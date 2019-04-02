@@ -30,6 +30,7 @@ Font enter2Font;
 public static BufferedImage anvilImg;
 public static BufferedImage squareImg;
 public static BufferedImage backgroundImg;
+public static BufferedImage moneyImg;
 Cube cu = new Cube(250, 700, 50, 50);
 ObjectManager obm = new ObjectManager(cu);
 
@@ -69,6 +70,7 @@ public void paintComponent(Graphics g){
                anvilImg = ImageIO.read(this.getClass().getResourceAsStream("anvil.png"));
                squareImg = ImageIO.read(this.getClass().getResourceAsStream("square.png"));
                backgroundImg = ImageIO.read(this.getClass().getResourceAsStream("background.png"));
+               moneyImg = ImageIO.read(this.getClass().getResourceAsStream("money.png"));
        } catch (IOException e) {
 
                
@@ -210,6 +212,14 @@ public void paintComponent(Graphics g){
 		g.setColor(Color.WHITE);
 		g.setFont(EnterFont);
 		g.drawString("Level " + obm.LEVEL, 50, 50);
+		//Score
+		g.setColor(Color.RED);
+		g.setFont(EnterFont);
+		g.drawString("Score: " + obm.RSCORE, 200, 50);
+		//HighScore
+		g.setColor(Color.RED);
+		g.setFont(EnterFont);
+		g.drawString("HighScore: " + obm.HSCORE, 180, 75);
 	}
 	void drawEndState(Graphics g) {
 		g.setColor(Color.RED);
@@ -220,13 +230,13 @@ public void paintComponent(Graphics g){
 		g.setColor(Color.BLACK);
 		g.drawString("Game Over", 100, 200);
 		
-		g.setFont(enemiesFont);
+		g.setFont(enter2Font);
 		g.setColor(Color.BLACK);
-		g.drawString("You dodged "+ obm.score + " anvils!", 125, 350);
+		g.drawString("Your Score Was " + obm.RSCORE, 115, 300);
 		
 		g.setFont(enter2Font);
 		g.setColor(Color.BLACK);
-		g.drawString("Press ENTER to restart", 115, 500);
+		g.drawString("Press ENTER to restart", 115, 400);
 	}
 
 

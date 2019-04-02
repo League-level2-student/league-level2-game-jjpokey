@@ -3,28 +3,19 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-public class Anvil extends GameObject{
+public class MegaAnvil extends GameObject{
 
-	int movement = new Random().nextInt(3);
-	Random rand = new Random();
-	Anvil(int x, int y, int width, int height) {
+	MegaAnvil(int x, int y, int width, int height) {
 		super(x, y, width, height);
 	}
 	
 void Update() {
 	super.Update();
 //MOVEMENT
+	
 	y+= 5;
 	
-	if(movement == 0) {
-		y+=5;
-		}
-	if(movement == 1) {
-	y+=3;
-	}
-	if(movement == 2) {
-		y+=10;
-		}
+	
 	
 	
 	
