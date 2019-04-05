@@ -28,7 +28,7 @@ Font overFont;
 Font enemiesFont;
 Font enter2Font;
 public static BufferedImage anvilImg;
-public static BufferedImage squareImg;
+public static BufferedImage guyImg;
 public static BufferedImage backgroundImg;
 public static BufferedImage moneyImg;
 Cube cu = new Cube(250, 700, 50, 50);
@@ -68,7 +68,7 @@ public void paintComponent(Graphics g){
 		   try {
 
                anvilImg = ImageIO.read(this.getClass().getResourceAsStream("anvil.png"));
-               squareImg = ImageIO.read(this.getClass().getResourceAsStream("square.png"));
+               guyImg = ImageIO.read(this.getClass().getResourceAsStream("guy.png"));
                backgroundImg = ImageIO.read(this.getClass().getResourceAsStream("background.png"));
                moneyImg = ImageIO.read(this.getClass().getResourceAsStream("money.png"));
        } catch (IOException e) {
@@ -112,15 +112,23 @@ public void paintComponent(Graphics g){
 	public void keyPressed(KeyEvent e) {
 		
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			if(cu.x > 400) {
+
+			}
+			else {
 			for(int a = 0; a < cu.speed; a++) {
 				cu.x++;
 			}
+			}
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			if(cu.x < 0) {
+			}
+			else {
 			for(int a = 0; a < cu.speed; a++) {
 				cu.x--;
 			}
-			
+			}
 		}
 		//else if(e.getKeyCode() == KeyEvent.VK_UP) {
 		//	for(int a = 0; a < cu.speed; a++) {
@@ -141,7 +149,8 @@ public void paintComponent(Graphics g){
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if(currentState == MENU_STATE) {
 				
-				JOptionPane.showMessageDialog(null, "Use arrow keys to move sideways. Avoid anvils at all cost! Try not to die");
+				JOptionPane.showMessageDialog(null, "Use arrow keys to move, avoid anvils. Every 10 seconds the"
+						+ " game will get slightly harder. Collect moneybags for extra points. Good Luck!");
 			}
 		}
 		
@@ -217,9 +226,9 @@ public void paintComponent(Graphics g){
 		g.setFont(EnterFont);
 		g.drawString("Score: " + obm.RSCORE, 200, 50);
 		//HighScore
-		g.setColor(Color.RED);
-		g.setFont(EnterFont);
-		g.drawString("HighScore: " + obm.HSCORE, 180, 75);
+		//g.setColor(Color.RED);
+		//g.setFont(EnterFont);
+		//g.drawString("HighScore: " + obm.HSCORE, 180, 75);
 	}
 	void drawEndState(Graphics g) {
 		g.setColor(Color.RED);

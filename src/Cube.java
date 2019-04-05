@@ -16,7 +16,7 @@ public class Cube extends GameObject {
 	}
 
 	public void Draw(Graphics g) {
-		g.drawImage(GamePanel.squareImg, x, y, width, height, null);
+		g.drawImage(GamePanel.guyImg, x, y, 100, 100, null);
 	}
 
 }

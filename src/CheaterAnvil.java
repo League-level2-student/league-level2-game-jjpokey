@@ -3,9 +3,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-public class MoneyBag extends GameObject{
+public class CheaterAnvil extends GameObject{
 
-	MoneyBag(int x, int y, int width, int height) {
+	CheaterAnvil(int x, int y, int width, int height) {
 		super(x, y, width, height);
 	}
 	
@@ -13,7 +13,7 @@ void Update() {
 	super.Update();
 //MOVEMENT
 	
-	y+= 6;
+	y+= 10;
 	
 	
 	
@@ -22,6 +22,6 @@ void Update() {
 }
 void Draw(Graphics g) {
 	
-	g.drawImage(GamePanel.moneyImg, x, y, width, height, null);
+	g.drawImage(GamePanel.anvilImg, x, y, width, height, null);
 }
 }

@@ -9,7 +9,7 @@ public class ObjectManager {
 	int enemySpawnTime2 = 5000;
 	int TIMER = 1000;
 	long TIMER2 = 0;
-	int T3 = 30000;
+	int T3 = 60000;
 	long T4 = 0;
 	int ActualTIMER;
 	int LEVEL = 1;
@@ -18,10 +18,12 @@ public class ObjectManager {
 	long T2 = 0;
 	int RSCORE = 0;
 	int HSCORE;
+	int q = 0;
 	Cube r;
 	ArrayList<Anvil> anvils = new ArrayList<Anvil>();
 	ArrayList<MegaAnvil> manvils = new ArrayList<MegaAnvil>();
 	ArrayList<MoneyBag> money = new ArrayList<MoneyBag>();
+
 
 	public ObjectManager(Cube roc) {
 		this.r = roc;
@@ -37,6 +39,9 @@ return score;
 
 		for (Anvil a : anvils) {
 			a.Update();
+		}
+		for (MoneyBag c : money) {
+			c.Update();
 		}
 		
 	}
@@ -72,6 +77,7 @@ return score;
 	public void addAlien(MoneyBag c) {
 		money.add(c);
 	}
+	
 //Anvil
 	public void manageEnemies() {
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
@@ -89,7 +95,7 @@ return score;
 		}
 		//money
 			if (System.currentTimeMillis() - T4 >= T3) {
-				addAlien(new Anvil(new Random().nextInt(500), 0, 50, 50));
+				addAlien(new MoneyBag(new Random().nextInt(500), 0, 50, 50));
 
 				T4 = System.currentTimeMillis();
 			}
@@ -108,10 +114,9 @@ return score;
 		if (System.currentTimeMillis() - T2 >= T) {
 			T2 = System.currentTimeMillis();
 			RSCORE++;
-			if(RSCORE > HSCORE) {
-				HSCORE = RSCORE; //WORK ON HIGHSCORE SYSTEM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			}
+			
 		}
+	
 	}
 
 	public void purgeObjects() {
@@ -131,10 +136,14 @@ return score;
 		}
 		for(MoneyBag c : money) {
 			if (r.collisionBox.intersects(c.collisionBox)) {
-				RSCORE += 5000;
+				RSCORE += 312;
+				q++;
+				//System.out.println(q);
 			}
 			}
 		}
+
+	
 		
 	} 
 
