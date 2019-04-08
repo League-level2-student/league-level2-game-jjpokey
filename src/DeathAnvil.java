@@ -3,9 +3,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-public class CheaterAnvil extends GameObject{
+public class DeathAnvil extends GameObject{
 
-	CheaterAnvil(int x, int y, int width, int height) {
+	DeathAnvil(int x, int y, int width, int height) {
 		super(x, y, width, height);
 	}
 	
@@ -13,7 +13,7 @@ void Update() {
 	super.Update();
 //MOVEMENT
 	
-	y+= 10;
+	y+= 5;
 	
 	
 	

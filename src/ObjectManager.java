@@ -9,20 +9,23 @@ public class ObjectManager {
 	int enemySpawnTime2 = 5000;
 	int TIMER = 1000;
 	long TIMER2 = 0;
-	int T3 = 60000;
+	int DTIMER = 1000;
+	long DTIMER2 = 0;
+	int T3 = 5000;
 	long T4 = 0;
 	int ActualTIMER;
 	int LEVEL = 1;
 	int score = 0;
 	int T = 1;
 	long T2 = 0;
-	int RSCORE = 0;
+	int RSCORE = 1000;
 	int HSCORE;
 	int q = 0;
 	Cube r;
 	ArrayList<Anvil> anvils = new ArrayList<Anvil>();
 	ArrayList<MegaAnvil> manvils = new ArrayList<MegaAnvil>();
 	ArrayList<MoneyBag> money = new ArrayList<MoneyBag>();
+	ArrayList<DeathAnvil> danvils = new ArrayList<DeathAnvil>();
 
 
 	public ObjectManager(Cube roc) {
@@ -54,10 +57,12 @@ return score;
 		}
 			for (int b = 0; b < manvils.size(); b++) {
 				manvils.get(b).Draw(g);
-		
 		}
 			for (int c = 0; c < money.size(); c++) {
 				money.get(c).Draw(g);
+		}
+			for (int d = 0; d < danvils.size(); d++) {
+				danvils.get(d).Draw(g);
 		
 		}
 		
@@ -77,6 +82,9 @@ return score;
 	public void addAlien(MoneyBag c) {
 		money.add(c);
 	}
+	public void addAlien(DeathAnvil d) {
+		danvils.add(d);
+	}
 	
 //Anvil
 	public void manageEnemies() {
@@ -91,6 +99,13 @@ return score;
 			addAlien(new Anvil(new Random().nextInt(500), 0, 100, 100));
 
 			enemyTimer2 = System.currentTimeMillis();
+		}
+		}
+		//DeathAnvil
+		if(RSCORE <= 0) {
+			if (System.currentTimeMillis() - DTIMER2 >= DTIMER) {
+				DTIMER2 = System.currentTimeMillis();
+				addAlien(new Anvil(0, 0, 500, 500));					
 		}
 		}
 		//money
@@ -113,16 +128,21 @@ return score;
 		//SCORE
 		if (System.currentTimeMillis() - T2 >= T) {
 			T2 = System.currentTimeMillis();
-			RSCORE++;
-			
+			RSCORE--;
 		}
+		}
+		
 	
-	}
 
 	public void purgeObjects() {
 		for (int z = 0; z < anvils.size(); z++) {
 			if (anvils.get(z).isAlive == false) {
 				anvils.remove(z);
+			}
+		}
+		for (int c = 0; c < money.size(); c++) {
+			if (money.get(c).isAlive == false) {
+				money.remove(c);
 			}
 		}
 	}
@@ -136,9 +156,8 @@ return score;
 		}
 		for(MoneyBag c : money) {
 			if (r.collisionBox.intersects(c.collisionBox)) {
-				RSCORE += 312;
-				q++;
-				//System.out.println(q);
+				RSCORE += 350;
+				c.isAlive = false;
 			}
 			}
 		}

@@ -59,12 +59,12 @@ public void paintComponent(Graphics g){
  GamePanel() {
 		Timer t = new Timer(frameRate, this);
 		this.t = t;
-		titleFont = new Font("Arial",Font.PLAIN,48);
-		EnterFont = new Font("Arial",Font.PLAIN,24);
-		SpaceFont = new Font("Arial",Font.PLAIN,24);
-		overFont = new Font("Arial",Font.PLAIN,48);
-		enemiesFont = new Font("Arial",Font.PLAIN,24);
-		enter2Font = new Font("Arial",Font.PLAIN,24);
+		titleFont = new Font("Impact",Font.PLAIN,48);
+		EnterFont = new Font("Impact",Font.PLAIN,24);
+		SpaceFont = new Font("Impact",Font.PLAIN,24);
+		overFont = new Font("Impact",Font.PLAIN,48);
+		enemiesFont = new Font("Impact",Font.PLAIN,24);
+		enter2Font = new Font("Impact",Font.PLAIN,24);
 		   try {
 
                anvilImg = ImageIO.read(this.getClass().getResourceAsStream("anvil.png"));
@@ -149,8 +149,9 @@ public void paintComponent(Graphics g){
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if(currentState == MENU_STATE) {
 				
-				JOptionPane.showMessageDialog(null, "Use arrow keys to move, avoid anvils. Every 10 seconds the"
-						+ " game will get slightly harder. Collect moneybags for extra points. Good Luck!");
+				JOptionPane.showMessageDialog(null, "Use arrow keys to move, avoid anvils. Every 10 seconds the \n"
+						+ " game will get slightly harder. Collect clocks to add time to the death timer, \n"
+						+ " if the death timer gets to 0 expect to die. Good luck!");
 			}
 		}
 		
@@ -213,10 +214,6 @@ public void paintComponent(Graphics g){
 	void drawGameState(Graphics g) {
 		g.drawImage(GamePanel.backgroundImg, 0, 0, 500, 800, null);
 		obm.Draw(g);
-		//Timer
-		g.setColor(Color.WHITE);
-		g.setFont(EnterFont);
-		g.drawString("Timer: " + obm.ActualTIMER , 400, 50);
 		//Level
 		g.setColor(Color.WHITE);
 		g.setFont(EnterFont);
@@ -224,7 +221,7 @@ public void paintComponent(Graphics g){
 		//Score
 		g.setColor(Color.RED);
 		g.setFont(EnterFont);
-		g.drawString("Score: " + obm.RSCORE, 200, 50);
+		g.drawString("Death Timer: " + obm.RSCORE, 300, 50);
 		//HighScore
 		//g.setColor(Color.RED);
 		//g.setFont(EnterFont);
@@ -241,7 +238,7 @@ public void paintComponent(Graphics g){
 		
 		g.setFont(enter2Font);
 		g.setColor(Color.BLACK);
-		g.drawString("Your Score Was " + obm.RSCORE, 115, 300);
+		g.drawString("You got to level " + obm.LEVEL, 130, 300);
 		
 		g.setFont(enter2Font);
 		g.setColor(Color.BLACK);
